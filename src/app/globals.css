@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #1a1a1a;
+  --card-border: #2a2a2a;
+  --accent: #eab308;
+  --accent-hover: #facc15;
+  --remaining: #22c55e;
+  --protein: #3b82f6;
+  --carbs: #22c55e;
+  --fat: #a855f7;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+@keyframes gradient-shift {
+  0%, 100% { opacity: 1; filter: hue-rotate(0deg); }
+  50% { opacity: 0.95; filter: hue-rotate(10deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes action-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-action-in {
+  animation: action-in 0.4s ease-out both;
+}
+@keyframes quick-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+.btn-quick {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+}
+.btn-quick:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -6px rgb(0 0 0 / 0.35);
+}
+.btn-quick:active {
+  transform: translateY(-1px);
+}
+.btn-quick-subtle {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--foreground);
+}
+.btn-quick-subtle:hover {
+  border-color: currentColor;
+}
+.btn-quick-subtle .btn-quick-accent { transition: opacity 0.3s ease; }
+.btn-quick-subtle:hover .btn-quick-accent { animation: quick-glow 1.5s ease-in-out infinite; }
