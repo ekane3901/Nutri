@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   if (!buffer) {
     return new NextResponse("Not found", { status: 404 });
   }
-  return new NextResponse(buffer, {
+  return new NextResponse(buffer as unknown as BodyInit, {
     headers: {
       "Content-Type": "image/jpeg",
       "Cache-Control": "public, max-age=31536000, immutable",
