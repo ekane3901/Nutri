@@ -2,7 +2,7 @@
 
 A full-stack AI-powered nutrition app that generates personalized recipes from your available ingredients, tracks macros over time, and provides data-driven insights into your eating habits.
 
-**[Live Demo](https://nutrify-ai.vercel.app)**
+**[Live Demo](https://nutrify-ai.vercel.app)** · **[GitHub](https://github.com/ekane3901/Nutri)**
 
 ---
 
@@ -58,3 +58,62 @@ Nutrify AI solves a real problem: most people don't know what to cook with what 
 ---
 
 ## Architecture
+'''
+src/
+├── app/
+│   ├── api/
+│   │   ├── recipes/        # GPT-4o recipe generation with Zod validation
+│   │   ├── substitute/     # Ingredient substitution engine
+│   │   └── image/          # DALL-E 3 + Unsplash image pipeline
+│   ├── analytics/          # Macro trends dashboard (Recharts)
+│   ├── checkin/            # Daily mood/energy logging → Supabase
+│   ├── dashboard/          # Home with quick actions and goal summary
+│   ├── ingredients/        # Ingredient input with voice recognition
+│   ├── planner/            # Weekly meal planner with macro totals
+│   └── recipes/            # Recipe detail and step-by-step cook mode
+├── lib/
+│   ├── supabase.ts         # Typed Supabase client
+│   ├── store.ts            # Data layer (Supabase + localStorage)
+│   ├── schemas.ts          # Zod validation schemas
+│   ├── tdee.ts             # BMR/TDEE calculations
+│   └── api-cache.ts        # In-memory TTL cache
+└── types/
+└── nutrify.ts          # Shared TypeScript types
+'''
+---
+
+## Database Schema
+
+```sql
+profiles          -- User stats, goals, and macro targets
+checkin_logs      -- Daily mood/energy entries with AI insights
+recipe_logs       -- Meal tracking for analytics pipeline
+daily_macro_totals -- Aggregated view for analytics dashboard
+```
+
+---
+
+## Local Setup
+
+```bash
+git clone https://github.com/ekane3901/Nutri.git
+cd Nutri
+npm install
+cp .env.example .env.local
+# Add your API keys to .env.local
+npm run dev
+```
+
+**Required environment variables:**
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+OPENAI_API_KEY=
+---
+
+## What This Demonstrates
+
+- **AI/API integration** — structured GPT-4o outputs, prompt engineering, response validation
+- **Full-stack development** — Next.js App Router, API routes, PostgreSQL, real-time data
+- **Data analytics** — time-series macro tracking, aggregation views, interactive charts
+- **TypeScript** — end-to-end type safety with Zod runtime validation
+- **Software engineering** — caching layer, error handling, component architecture
